@@ -39,6 +39,7 @@ npm run db:seed
 |------|-------|
 | `TURSO_DATABASE_URL` | `libsql://...` from Turso |
 | `TURSO_AUTH_TOKEN` | token from Turso |
+| `DATABASE_URL` | `file:./prisma/dev.db` *(optional — only needed if build still complains)* |
 
 4. Click **Deploy**
 
