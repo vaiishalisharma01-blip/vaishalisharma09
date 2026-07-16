@@ -1,96 +1,88 @@
-# Finish Vercel Deploy (Windows)
+# Fix: Prisma cannot use libsql:// with `db push`
 
-ProjectHub needs a cloud database (Turso) because Vercel cannot use a local SQLite file.
+`npx prisma db push` only works with local SQLite (`file:...`).
+For Turso, apply SQL with the Turso CLI, then seed with the adapter.
 
-## Step 1 — Create Turso database (5 min)
+## SECURITY FIRST
 
-1. Open https://turso.tech and sign up / log in (GitHub is fine)
-2. In the Turso dashboard: **Create Database** → name it `projecthub`
-3. Open the database → copy:
-   - **URL** (starts with `libsql://...`)
-   - Create a **token** and copy it
-
-### Optional: Turso CLI (PowerShell)
+If you pasted your Turso token in chat or a screenshot, **revoke it** and create a new one:
 
 ```powershell
-# Install: https://docs.turso.tech/cli/installation
-turso auth login
-turso db create projecthub
-turso db show projecthub --url
 turso db tokens create projecthub
 ```
 
+(Use your real DB name — yours may be `projeecthub-...` with the double "e".)
+
 ---
 
-## Step 2 — Push tables + sample data to Turso
+## Correct steps (PowerShell)
 
-In PowerShell:
+### 1) Install Turso CLI (if needed)
+
+https://docs.turso.tech/cli/installation
+
+```powershell
+turso auth login
+turso db list
+```
+
+Note the **database name** from the list (first column), e.g. `projeecthub-vaiishalisharma01-blip` or `projecthub`.
+
+### 2) Pull latest code
 
 ```powershell
 cd C:\Users\vaish\vaishalisharma09
 git pull origin main
+```
 
-$env:TURSO_DATABASE_URL="libsql://PASTE-YOUR-URL-HERE"
-$env:TURSO_AUTH_TOKEN="PASTE-YOUR-TOKEN-HERE"
-$env:DATABASE_URL=$env:TURSO_DATABASE_URL
+### 3) Apply schema to Turso (NOT prisma db push)
 
-npx prisma db push
+```powershell
+# Replace DB_NAME with the name from `turso db list`
+Get-Content .\prisma\turso-schema.sql | turso db shell DB_NAME
+```
+
+Example:
+
+```powershell
+Get-Content .\prisma\turso-schema.sql | turso db shell projeecthub-vaiishalisharma01-blip
+```
+
+### 4) Seed data (uses Turso adapter — keep BOTH env vars)
+
+```powershell
+$env:TURSO_DATABASE_URL="libsql://YOUR-FULL-URL.turso.io"
+$env:TURSO_AUTH_TOKEN="YOUR-NEW-TOKEN"
+# Important: do NOT set DATABASE_URL to the libsql URL
+$env:DATABASE_URL="file:./prisma/dev.db"
+
 npm run db:seed
 ```
 
-If `db push` fails against Turso, apply the migration SQL instead:
+You should see: `Using Turso database: libsql://...`
 
-```powershell
-turso db shell projecthub < .\prisma\migrations\*\migration.sql
-```
-
-(Use the actual migration folder name from `prisma\migrations`.)
-
----
-
-## Step 3 — Deploy / Redeploy on Vercel
-
-1. Open https://vercel.com/login → sign in with **GitHub**
-2. Open https://vercel.com/new
-3. Import **`vaiishalisharma01-blip/vaishalisharma09`**
-4. Before Deploy → **Environment Variables** → add for Production + Preview:
+### 5) Vercel env vars + Redeploy
 
 | Name | Value |
 |------|-------|
-| `TURSO_DATABASE_URL` | your `libsql://...` URL |
-| `TURSO_AUTH_TOKEN` | your Turso token |
+| `TURSO_DATABASE_URL` | `libsql://...` |
+| `TURSO_AUTH_TOKEN` | your token |
 
-5. Click **Deploy**
-
-### If the project already exists on Vercel
-
-1. Open the project → **Settings** → **Environment Variables**
-2. Add/update the two variables above
-3. Go to **Deployments** → open latest → **⋯** → **Redeploy**
+Then **Redeploy**.
 
 ---
 
-## Step 4 — Verify it works
+## Why your error happened
 
-Open:
-
-- `https://YOUR-APP.vercel.app/status` → green **Connected**
-- `https://YOUR-APP.vercel.app` → dashboard with projects
+| Command | What went wrong |
+|---------|-----------------|
+| `prisma db push` + `libsql://` | Prisma SQLite driver does not understand `libsql://` → P1013 |
+| `npm run db:seed` | Fell back to local SQLite and `prisma/` folder path failed |
 
 ---
 
-## Common errors
+## Optional helper script
 
-| Error | Fix |
-|-------|-----|
-| Build fails on `DATABASE_URL` | Pull latest `main` (already fixed) and redeploy |
-| App loads but empty / DB error | Env vars missing, or schema not pushed to Turso |
-| `/status` shows disconnected | Check Turso URL + token on Vercel, then redeploy |
-
-## Local vs Vercel
-
-| | Local | Vercel |
-|--|-------|--------|
-| URL | http://localhost:3000 | https://your-app.vercel.app |
-| Database | SQLite file | Turso |
-| Start | `npm run dev` | Deploy once, then always online |
+```powershell
+.\scripts\push-turso.ps1 -Url "libsql://..." -Token "eyJ..."
+```

@@ -4,10 +4,17 @@ import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
 import { PrismaLibSql } from "@prisma/adapter-libsql";
 
 function createPrismaClient() {
-  const tursoUrl = process.env.TURSO_DATABASE_URL;
-  const tursoToken = process.env.TURSO_AUTH_TOKEN;
+  const tursoUrl = process.env.TURSO_DATABASE_URL?.trim();
+  const tursoToken = process.env.TURSO_AUTH_TOKEN?.trim();
 
+  // Prefer Turso whenever both vars are set (used for Vercel seeding)
   if (tursoUrl && tursoToken) {
+    if (!tursoUrl.startsWith("libsql://") && !tursoUrl.startsWith("https://")) {
+      throw new Error(
+        `TURSO_DATABASE_URL must start with libsql:// (got: ${tursoUrl.slice(0, 40)}...)`
+      );
+    }
+    console.log("Using Turso database:", tursoUrl);
     const adapter = new PrismaLibSql({
       url: tursoUrl,
       authToken: tursoToken,
@@ -15,9 +22,16 @@ function createPrismaClient() {
     return new PrismaClient({ adapter });
   }
 
-  const adapter = new PrismaBetterSqlite3({
-    url: process.env.DATABASE_URL ?? "file:./prisma/dev.db",
-  });
+  // Local SQLite — never use libsql:// here (Prisma CLI / better-sqlite3 can't open it)
+  let sqliteUrl = process.env.DATABASE_URL ?? "file:./prisma/dev.db";
+  if (sqliteUrl.startsWith("libsql://") || sqliteUrl.startsWith("https://")) {
+    console.warn(
+      "DATABASE_URL is a Turso URL but TURSO_AUTH_TOKEN is missing — falling back to file:./prisma/dev.db"
+    );
+    sqliteUrl = "file:./prisma/dev.db";
+  }
+  console.log("Using local SQLite:", sqliteUrl);
+  const adapter = new PrismaBetterSqlite3({ url: sqliteUrl });
   return new PrismaClient({ adapter });
 }
 
