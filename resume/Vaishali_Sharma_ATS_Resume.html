@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vaishali Sharma - Frontend Developer Resume</title>
+  <style>
+    /* ATS-friendly: single column, standard font, no tables/columns/graphics */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.35;
+      color: #000000;
+      background: #ffffff;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.45in 0.6in;
+    }
+
+    h1 {
+      font-size: 18pt;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .contact {
+      text-align: center;
+      font-size: 9.5pt;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .contact a {
+      color: #000000;
+      text-decoration: none;
+    }
+
+    h2 {
+      font-size: 11pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-bottom: 1px solid #000000;
+      padding-bottom: 1px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    p {
+      margin-bottom: 4px;
+    }
+
+    .entry {
+      margin-bottom: 7px;
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 2px 10px;
+    }
+
+    .entry-title {
+      font-weight: bold;
+    }
+
+    .entry-sub {
+      font-style: italic;
+    }
+
+    .entry-date {
+      font-weight: normal;
+      white-space: nowrap;
+    }
+
+    ul {
+      margin: 2px 0 0 16px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 2px;
+    }
+
+    .skills-line {
+      margin-bottom: 2px;
+    }
+
+    .skills-label {
+      font-weight: bold;
+    }
+
+    @media print {
+      body {
+        padding: 0.35in 0.5in;
+        max-width: none;
+      }
+
+      a {
+        text-decoration: none;
+        color: #000000;
+      }
+
+      h2 {
+        page-break-after: avoid;
+      }
+
+      .entry {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Vaishali Sharma</h1>
+  <p class="contact">
+    Kanpur, UP, India | +91 7905987701 | vaiishali.sharma.01@gmail.com<br />
+    LinkedIn: linkedin.com/in/vaishali-sharma-3611b332a
+  </p>
+
+  <h2>Professional Summary</h2>
+  <p>
+    Computer Science Engineering graduate and aspiring Frontend Developer with hands-on experience building clean, responsive, and performance-optimized web applications using React.js, JavaScript, HTML5, CSS3, and Tailwind CSS. Strong foundation in API integration, UI/UX design, and translating data into intuitive user interfaces. Seeking a full-time Frontend Developer role to apply internship experience and modern web development skills.
+  </p>
+
+  <h2>Technical Skills</h2>
+  <p class="skills-line"><span class="skills-label">Frontend:</span> React.js, JavaScript, HTML5, CSS3, Tailwind CSS, UI/UX Design, Figma</p>
+  <p class="skills-line"><span class="skills-label">Languages:</span> Python, C, Java</p>
+  <p class="skills-line"><span class="skills-label">Backend &amp; Frameworks:</span> Flask, Django, Node.js (Basics), PyTorch</p>
+  <p class="skills-line"><span class="skills-label">Tools &amp; Databases:</span> GitHub, Git, VS Code, SQLite, Vercel</p>
+
+  <h2>Education</h2>
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">Bachelor of Technology in Computer Science &amp; Engineering</span>
+      <span class="entry-date">09/2022 – Present</span>
+    </div>
+    <div class="entry-sub">Kanpur Institute of Technology, Kanpur, UP</div>
+  </div>
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">Higher Secondary (Class XII) – Computer Science</span>
+      <span class="entry-date">04/2021 – 04/2022</span>
+    </div>
+    <div class="entry-sub">Kendriya Vidyalaya No.1, Kanpur, UP</div>
+  </div>
+
+  <h2>Experience</h2>
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">LLM Post-Training Intern | Ethara.AI | Remote</span>
+      <span class="entry-date">01/2026 – 05/2026</span>
+    </div>
+    <ul>
+      <li>Optimized LLM response accuracy, safety, and human alignment metrics using Supervised Fine-Tuning (SFT) and RLHF post-training strategies.</li>
+      <li>Evaluated, curated, and preprocessed high-quality datasets for model alignment pipelines.</li>
+      <li>Benchmarked model outputs, identified hallucinations, and refined prompt engineering logic with AI research teams.</li>
+    </ul>
+  </div>
+
+  <h2>Projects</h2>
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">Crop-Sense: Intelligent AI Full-Stack Agricultural Assistant</span>
+    </div>
+    <ul>
+      <li>Built an end-to-end AI platform for crop recommendations from soil profiles, N-P-K fertilizer tracking, leaf disease detection, and a farming chatbot.</li>
+      <li>Developed with Python and Flask using a Random Forest Classifier (100 trees) and a 9-layer ResNet9 CNN; integrated DeepSeek R1 via OpenRouter API with sub-2-second local inference.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">iBuilt-This App | ibuilt-thisapp.vercel.app</span>
+    </div>
+    <ul>
+      <li>Built a high-performance, component-driven web app with React.js, JavaScript, and Tailwind CSS focused on fast loads and mobile-first UI.</li>
+      <li>Implemented client-side routing and adaptive layouts; deployed a production build to Vercel with asset optimization.</li>
+    </ul>
+  </div>
+
+  <h2>Certifications</h2>
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">Advanced IT Skills Training in Cybersecurity (Grade A) | ICT Academy &amp; Redington (Cisco Academy)</span>
+      <span class="entry-date">11/2025 – 12/2025</span>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">Django Web Development Certification | RCPL Trainee</span>
+      <span class="entry-date">06/2025 – 07/2025</span>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">Python Programming Internship Certificate | Oasis Infobyte</span>
+      <span class="entry-date">08/2025</span>
+    </div>
+  </div>
+</body>
+</html>
