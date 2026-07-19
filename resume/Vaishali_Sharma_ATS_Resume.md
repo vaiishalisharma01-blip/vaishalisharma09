@@ -1,46 +1,47 @@
 # VAISHALI SHARMA
+Frontend Developer | React.js | JavaScript
 
 Kanpur, UP, India | +91 7905987701 | vaiishali.sharma.01@gmail.com
-LinkedIn: linkedin.com/in/vaishali-sharma-3611b332a
+LinkedIn: linkedin.com/in/vaishali-sharma-3611b332a | Portfolio: ibuilt-thisapp.vercel.app
 
 ## PROFESSIONAL SUMMARY
 
-Computer Science Engineering graduate and aspiring Frontend Developer with hands-on experience building clean, responsive, and performance-optimized web applications using React.js, JavaScript, HTML5, CSS3, and Tailwind CSS. Strong foundation in API integration, UI/UX design, and translating data into intuitive user interfaces. Seeking a full-time Frontend Developer role to apply internship experience and modern web development skills.
+Fresher Frontend Developer skilled in building responsive, mobile-first web apps with React.js, JavaScript, and Tailwind CSS. Comfortable turning designs into clean UI components, connecting APIs, and shipping production builds. Brings internship experience in AI evaluation plus full-stack project work—ready to contribute to a product team and grow as a Frontend Engineer.
 
 ## TECHNICAL SKILLS
 
-- Frontend: React.js, JavaScript, HTML5, CSS3, Tailwind CSS, UI/UX Design, Figma
+- Frontend: React.js, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Responsive Design, Figma
+- Backend & APIs: Flask, Django, REST APIs, Node.js (Basics), SQLite
 - Languages: Python, C, Java
-- Backend & Frameworks: Flask, Django, Node.js (Basics), PyTorch
-- Tools & Databases: GitHub, Git, VS Code, SQLite, Vercel
+- Tools: Git, GitHub, VS Code, Vercel, PyTorch
 
 ## EDUCATION
 
-Bachelor of Technology in Computer Science & Engineering | 09/2022 – Present
+B.Tech, Computer Science & Engineering | 09/2022 – Present
 Kanpur Institute of Technology, Kanpur, UP
 
-Higher Secondary (Class XII) – Computer Science | 04/2021 – 04/2022
+Class XII (Computer Science) | 04/2021 – 04/2022
 Kendriya Vidyalaya No.1, Kanpur, UP
 
-## EXPERIENCE
+## INTERNSHIP EXPERIENCE
 
 LLM Post-Training Intern | Ethara.AI | Remote | 01/2026 – 05/2026
-- Optimized LLM response accuracy, safety, and human alignment metrics using Supervised Fine-Tuning (SFT) and RLHF post-training strategies.
-- Evaluated, curated, and preprocessed high-quality datasets for model alignment pipelines.
-- Benchmarked model outputs, identified hallucinations, and refined prompt engineering logic with AI research teams.
+- Improved model response quality by applying SFT and RLHF techniques focused on accuracy, safety, and human preference alignment.
+- Prepared and filtered training datasets so alignment pipelines used cleaner, more reliable examples.
+- Tested model outputs for hallucinations and weak prompts, then iterated with the research team to tighten prompt logic.
 
 ## PROJECTS
 
-Crop-Sense: Intelligent AI Full-Stack Agricultural Assistant
-- Built an end-to-end AI platform for crop recommendations from soil profiles, N-P-K fertilizer tracking, leaf disease detection, and a farming chatbot.
-- Developed with Python and Flask using a Random Forest Classifier (100 trees) and a 9-layer ResNet9 CNN; integrated DeepSeek R1 via OpenRouter API with sub-2-second local inference.
+Crop-Sense — AI Farming Assistant (Full-Stack)
+- Designed a practical AI tool that helps farmers pick crops from soil data, track fertilizer gaps, spot leaf disease, and ask farming questions in a chatbot.
+- Shipped a Flask backend with a Random Forest crop model and ResNet9 CNN for leaf analysis; connected DeepSeek R1 for chat and kept local inference under 2 seconds with in-memory model caching.
 
-iBuilt-This App | ibuilt-thisapp.vercel.app
-- Built a high-performance, component-driven web app with React.js, JavaScript, and Tailwind CSS focused on fast loads and mobile-first UI.
-- Implemented client-side routing and adaptive layouts; deployed a production build to Vercel with asset optimization.
+iBuilt-This — React Portfolio Web App | ibuilt-thisapp.vercel.app
+- Built a fast, reusable React + Tailwind UI with smooth client-side routing and layouts that stay consistent on mobile and desktop.
+- Deployed to Vercel with production asset optimization so first load stays quick across devices.
 
 ## CERTIFICATIONS
 
-Advanced IT Skills Training in Cybersecurity (Grade A) | ICT Academy & Redington (Cisco Academy) | 11/2025 – 12/2025
-Django Web Development Certification | RCPL Trainee | 06/2025 – 07/2025
-Python Programming Internship Certificate | Oasis Infobyte | 08/2025
+Cybersecurity — Advanced IT Skills (Grade A) | ICT Academy & Redington (Cisco) | 11/2025 – 12/2025
+Django Web Development | RCPL | 06/2025 – 07/2025
+Python Programming Internship | Oasis Infobyte | 08/2025

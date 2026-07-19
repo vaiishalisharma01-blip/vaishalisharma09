@@ -33,6 +33,9 @@ class ResumePDF(FPDF):
         if right:
             right_w = self.get_string_width(right) + 1
             left_w = usable - right_w
+            # Truncate left if needed for one-line fit
+            while self.get_string_width(left) > left_w - 2 and len(left) > 20:
+                left = left[:-4] + "..."
             self.cell(left_w, 4.6, left)
             self.set_font("Helvetica", "", 10)
             self.cell(right_w, 4.6, right, align="R", new_x="LMARGIN", new_y="NEXT")
@@ -58,15 +61,16 @@ def build() -> None:
     pdf.set_margins(15, 12, 15)
     pdf.add_page()
 
-    # Name
     pdf.set_font("Helvetica", "B", 18)
-    pdf.cell(0, 8, "VAISHALI SHARMA", align="C", new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 7.5, "VAISHALI SHARMA", align="C", new_x="LMARGIN", new_y="NEXT")
 
-    # Contact
+    pdf.set_font("Helvetica", "B", 10.5)
+    pdf.cell(0, 4.5, "Frontend Developer | React.js | JavaScript", align="C", new_x="LMARGIN", new_y="NEXT")
+
     pdf.set_font("Helvetica", "", 9.5)
     pdf.cell(
         0,
-        4.2,
+        4.0,
         "Kanpur, UP, India  |  +91 7905987701  |  vaiishali.sharma.01@gmail.com",
         align="C",
         new_x="LMARGIN",
@@ -74,106 +78,91 @@ def build() -> None:
     )
     pdf.cell(
         0,
-        4.2,
-        "LinkedIn: linkedin.com/in/vaishali-sharma-3611b332a",
+        4.0,
+        "LinkedIn: linkedin.com/in/vaishali-sharma-3611b332a  |  Portfolio: ibuilt-thisapp.vercel.app",
         align="C",
         new_x="LMARGIN",
         new_y="NEXT",
     )
     pdf.ln(2)
 
-    # Summary
     pdf.section_title("Professional Summary")
     pdf.body(
-        "Computer Science Engineering graduate and aspiring Frontend Developer with hands-on "
-        "experience building clean, responsive, and performance-optimized web applications "
-        "using React.js, JavaScript, HTML5, CSS3, and Tailwind CSS. Strong foundation in API "
-        "integration, UI/UX design, and translating data into intuitive user interfaces. "
-        "Seeking a full-time Frontend Developer role to apply internship experience and modern "
-        "web development skills."
+        "Fresher Frontend Developer skilled in building responsive, mobile-first web apps with "
+        "React.js, JavaScript, and Tailwind CSS. Comfortable turning designs into clean UI "
+        "components, connecting APIs, and shipping production builds. Brings internship "
+        "experience in AI evaluation plus full-stack project work - ready to contribute to a "
+        "product team and grow as a Frontend Engineer."
     )
 
-    # Skills
     pdf.section_title("Technical Skills")
     pdf.labeled_line(
         "Frontend",
-        "React.js, JavaScript, HTML5, CSS3, Tailwind CSS, UI/UX Design, Figma",
+        "React.js, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, Responsive Design, Figma",
     )
+    pdf.labeled_line("Backend & APIs", "Flask, Django, REST APIs, Node.js (Basics), SQLite")
     pdf.labeled_line("Languages", "Python, C, Java")
-    pdf.labeled_line("Backend & Frameworks", "Flask, Django, Node.js (Basics), PyTorch")
-    pdf.labeled_line("Tools & Databases", "GitHub, Git, VS Code, SQLite, Vercel")
+    pdf.labeled_line("Tools", "Git, GitHub, VS Code, Vercel, PyTorch")
     pdf.ln(1)
 
-    # Education
     pdf.section_title("Education")
-    pdf.entry_header(
-        "Bachelor of Technology in Computer Science & Engineering",
-        "09/2022 - Present",
-    )
+    pdf.entry_header("B.Tech, Computer Science & Engineering", "09/2022 - Present")
     pdf.italic_line("Kanpur Institute of Technology, Kanpur, UP")
     pdf.ln(1)
-    pdf.entry_header(
-        "Higher Secondary (Class XII) - Computer Science",
-        "04/2021 - 04/2022",
-    )
+    pdf.entry_header("Class XII (Computer Science)", "04/2021 - 04/2022")
     pdf.italic_line("Kendriya Vidyalaya No.1, Kanpur, UP")
     pdf.ln(1)
 
-    # Experience
-    pdf.section_title("Experience")
+    pdf.section_title("Internship Experience")
     pdf.entry_header(
         "LLM Post-Training Intern | Ethara.AI | Remote",
         "01/2026 - 05/2026",
     )
     pdf.bullet(
-        "Optimized LLM response accuracy, safety, and human alignment metrics using "
-        "Supervised Fine-Tuning (SFT) and RLHF post-training strategies."
+        "Improved model response quality by applying SFT and RLHF techniques focused on "
+        "accuracy, safety, and human preference alignment."
     )
     pdf.bullet(
-        "Evaluated, curated, and preprocessed high-quality datasets for model alignment pipelines."
+        "Prepared and filtered training datasets so alignment pipelines used cleaner, more "
+        "reliable examples."
     )
     pdf.bullet(
-        "Benchmarked model outputs, identified hallucinations, and refined prompt engineering "
-        "logic with AI research teams."
+        "Tested model outputs for hallucinations and weak prompts, then iterated with the "
+        "research team to tighten prompt logic."
     )
     pdf.ln(1)
 
-    # Projects
     pdf.section_title("Projects")
-    pdf.entry_header("Crop-Sense: Intelligent AI Full-Stack Agricultural Assistant")
+    pdf.entry_header("Crop-Sense - AI Farming Assistant (Full-Stack)")
     pdf.bullet(
-        "Built an end-to-end AI platform for crop recommendations from soil profiles, "
-        "N-P-K fertilizer tracking, leaf disease detection, and a farming chatbot."
+        "Designed a practical AI tool that helps farmers pick crops from soil data, track "
+        "fertilizer gaps, spot leaf disease, and ask farming questions in a chatbot."
     )
     pdf.bullet(
-        "Developed with Python and Flask using a Random Forest Classifier (100 trees) and a "
-        "9-layer ResNet9 CNN; integrated DeepSeek R1 via OpenRouter API with sub-2-second "
-        "local inference."
+        "Shipped a Flask backend with a Random Forest crop model and ResNet9 CNN for leaf "
+        "analysis; connected DeepSeek R1 for chat and kept local inference under 2 seconds "
+        "with in-memory model caching."
     )
     pdf.ln(1)
-    pdf.entry_header("iBuilt-This App | ibuilt-thisapp.vercel.app")
+    pdf.entry_header("iBuilt-This - React Portfolio Web App", "ibuilt-thisapp.vercel.app")
     pdf.bullet(
-        "Built a high-performance, component-driven web app with React.js, JavaScript, and "
-        "Tailwind CSS focused on fast loads and mobile-first UI."
+        "Built a fast, reusable React + Tailwind UI with smooth client-side routing and "
+        "layouts that stay consistent on mobile and desktop."
     )
     pdf.bullet(
-        "Implemented client-side routing and adaptive layouts; deployed a production build to "
-        "Vercel with asset optimization."
+        "Deployed to Vercel with production asset optimization so first load stays quick "
+        "across devices."
     )
     pdf.ln(1)
 
-    # Certifications
     pdf.section_title("Certifications")
     pdf.entry_header(
-        "Advanced IT Skills Training in Cybersecurity (Grade A) | ICT Academy & Redington (Cisco Academy)",
+        "Cybersecurity - Advanced IT Skills (Grade A) | ICT Academy & Redington (Cisco)",
         "11/2025 - 12/2025",
     )
+    pdf.entry_header("Django Web Development | RCPL", "06/2025 - 07/2025")
     pdf.entry_header(
-        "Django Web Development Certification | RCPL Trainee",
-        "06/2025 - 07/2025",
-    )
-    pdf.entry_header(
-        "Python Programming Internship Certificate | Oasis Infobyte",
+        "Python Programming Internship | Oasis Infobyte",
         "08/2025",
     )
 
